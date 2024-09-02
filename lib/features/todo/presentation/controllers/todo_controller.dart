@@ -20,8 +20,7 @@ class TodoController extends GetxController {
 
   String completeField = 'Veuillez remplir ce champs';
 
-  bool get isDataCompleted =>
-      todoController.text.isNotEmpty;
+  bool get isDataCompleted => todoController.text.isNotEmpty;
 
   @override
   void onInit() async {
@@ -111,10 +110,12 @@ class TodoController extends GetxController {
     return false;
   }
 
-  Future<bool> updateTodo(Todo todo) async {
+  Future<bool> updateTodo(Todo todo, [bool isEditCheckbox = false]) async {
     AppDatabase db = await AppDatabase.getInstance();
-    validateFields();
-    if (isDataCompleted) {
+    if (!isEditCheckbox) {
+      validateFields();
+    }
+    if (isDataCompleted || isEditCheckbox) {
       try {
         await db.todoDao.update(todo);
         var todoIndex = todoList.indexWhere((value) => value.id == todo.id);

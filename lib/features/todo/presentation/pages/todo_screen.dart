@@ -133,7 +133,7 @@ class TodoScreen extends GetView<TodoController> {
                 }
 
                 if (controller.todoList.isEmpty) {
-                  return const Expanded(child: NoTodoScreen());
+                  return const NoTodoScreen();
                 }
 
                 return ListView.separated(
@@ -147,13 +147,13 @@ class TodoScreen extends GetView<TodoController> {
                       return TodoItem(
                         todo: todo,
                         controller: controller,
-                        onCompleted: (isCompleted) {
-                          controller.updateTodo(Todo(
+                        onCompleted: (isCompleted) async {
+                          await controller.updateTodo(Todo(
                             id: todo.id,
                             name: todo.name,
                             description: todo.description,
                             isCompleted: isCompleted ?? false,
-                          ));
+                          ), true);
                         },
                       );
                     });

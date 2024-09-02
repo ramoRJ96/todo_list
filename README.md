@@ -1,6 +1,6 @@
 # todo_list
 
-A new Flutter project.
+Une application de gestion de tâches qui permet aux utilisateurs d'ajouter, de modifier, de supprimer et de marquer les tâches comme complètes.
 
 ## Getting Started
 
